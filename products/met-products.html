@@ -1,0 +1,49 @@
+<head>
+  <title>Products</title>
+</head>
+
+<body>
+  {{> Products}}
+  {{> Cart}}
+</body>
+
+<template name="Cart">
+    <div id="Cart">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+            {{#each CartItems}}
+                <tr>
+                    <td>
+                    	<div class="CartItem">{{Name}}</div>
+                    </td>
+                    <td>${{Price}}</td>
+                    <td>{{Quantity}}</td>
+                    <td>${{Total}}</td>
+                </tr>
+            {{/each}}
+            <tr>
+                <td colspan="4">Total: ${{SubTotal}}</td>
+            </tr>
+        </table>
+    </div>
+</template>
+
+<template name="Products">
+	{{#each ProductArr}}
+		<div class="Product">
+			<h2>{{Name}}</h2>
+			<p>Price: ${{Price}}</p>
+			{{#if InStock}}
+				<p>This item is in stock</p>
+			{{else}}
+				<p>This item is sold out</p>
+			{{/if}}
+		</div>
+	{{/each}}
+</template>
+
