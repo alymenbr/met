@@ -1,8 +1,9 @@
  
- Meteor.Router.add({
-    '/': 'home',
-    '/rooms': 'room'
-  });
+
+Router.map( function(){
+	this.route( 'home', {path: '/'} );
+	this.route( 'room', {path: '/rooms/:_id'} );
+});
 
 var rooms = [
 	{name: 'Meteor Talk', members: 3, last_activity: '1 minute ago',
@@ -12,7 +13,7 @@ var rooms = [
 			{author: 'Tom', text: 'Good thanks!'}
 		]},
 	{name: 'Dev', members: 2, last_activity: '5 minutes ago'},
-	{name: 'Core', members: 0, last_activity: '3 days ago'},	
+	{name: 'Core', members: 0, last_activity: '3 days ago'}
 ];
 
 Template.rooms.helpers({

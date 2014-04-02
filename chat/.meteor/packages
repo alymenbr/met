@@ -8,4 +8,4 @@ autopublish
 insecure
 bootstrap-updated
 font-awesome
-router
+iron-router
