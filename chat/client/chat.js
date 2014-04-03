@@ -16,13 +16,11 @@ Template.rooms.helpers({
 
 Template.rooms.events = {
 
-	"click button" : function(){
+	"click #createRoom" : function(){
 		var newRoom = document.getElementById("roomName").value;
-		alert(newRoom);
-		
-		//Rooms.insert({name: newRoom, members: 0, last_activity: 'Never'});
+		Rooms.insert({name: newRoom, members: 0, last_activity: 'Never'});
+		return false;
 	}
-
 };
 
 Template.room.events = {
@@ -32,14 +30,8 @@ Template.room.events = {
 		var newAuthor = document.getElementById("author").value;
 		var currentId = this._id;
 		addMessage(currentId, newAuthor, newMessage);
-	},
-
-	'submit': function () {
-		var newMessage = document.getElementById("message").value;
-		var newAuthor = document.getElementById("author").value;
-		var currentId = this._id;
-		addMessage(currentId, newAuthor, newMessage);
-    }
+		return false;
+	}
 };
 
 function addMessage(id, newAuthor, newMessage) {

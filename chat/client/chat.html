@@ -32,8 +32,11 @@
 				<tr>
 					<td colspan="3">
 						<input id="roomName" type="text" placeholder="Enter new room name"/>
-						<button type="submit" class="btn btn-primary pull-right">
+						<button id="createRoom" type="button" class="btn btn-primary pull-right">
 							<i class="icon-plus"></i>Create Room
+						</button>
+						<button type="submit" class="btn btn-primary pull-right">
+							<i class="icon-plus"></i>Submit
 						</button>
 					</td>
 				</tr>
@@ -52,33 +55,34 @@
 
 <template name="room">
 	<div class="span6">
-		<h1>Wecome to {{name}}</h1>
-		<table id="chat" class="table table-striped">
-			<tbody>
-				{{#each messages}}
+		<h1>Welcome to {{name}}</h1>
+		<form name="message_form">		
+			<table id="chat" class="table table-striped">
+				<tbody>
+					{{#each messages}}
+						<tr>
+							<td>{{author}} :</td>
+							<td>{{text}}</td>
+						</tr>
+					{{/each}}
 					<tr>
-						<td>{{author}} :</td>
-						<td>{{text}}</td>
-					</tr>
-				{{/each}}
-				<tr>
-					<td>
-						<input id="author" type="text" class="form-control" placeholder="author"/>
-					</td>
-					<td>
-						<form name="message_form">
+						<td>
+							<input id="author" type="text" class="form-control" placeholder="author"/>
+						</td>
+						<td>
+
 							<input id="message" type="text" class="form-control" placeholder="message"/>
-						</form>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<button type="submit" class="btn btn-primary pull-right">
-							<i class="icon-envelope"></i> Send Message
-						</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<button type="submit" class="btn btn-primary pull-right">
+								<i class="icon-envelope"></i> Send Message
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</form>
 	</div>
 </template>
