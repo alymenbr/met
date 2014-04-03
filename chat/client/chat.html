@@ -24,14 +24,14 @@
 			<tbody>
 				{{#each rooms}}
 				<tr>
-					<td><a href="/rooms/7">{{name}}</a></td>
+					<td><a href="/rooms/{{_id}}">{{name}}</a></td>
 					<td>{{members}}</td>
 					<td>{{last_activity}}</td>
 				</tr>
 				{{/each}}
 				<tr>
 					<td colspan="3">
-						<input type="text" name="name" placeholder="Enter your name"/>
+						<input id="roomName" type="text" placeholder="Enter new room name"/>
 						<button type="submit" class="btn btn-primary pull-right">
 							<i class="icon-plus"></i>Create Room
 						</button>
@@ -52,28 +52,33 @@
 
 <template name="room">
 	<div class="span6">
-		{{#with room}}
-			<h1>Wecome to {{name}}</h1>
-			<table id="chat" class="table table-striped">
-				<tbody>
-					{{#each messages}}
-						<tr>
-							<td>{{author}} :</td>
-							<td>{{text}}</td>
-						</tr>
-					{{/each}}
+		<h1>Wecome to {{name}}</h1>
+		<table id="chat" class="table table-striped">
+			<tbody>
+				{{#each messages}}
 					<tr>
-						<td colspan="2">
-							<form name="new_message">
-								<input type="text" name="text"/>
-								<button type="submit" class="btn btn-primary pull-right">
-									<i class="icon-envelope"></i> Send Message
-								</button>
-							</form>
-						</td>
+						<td>{{author}} :</td>
+						<td>{{text}}</td>
 					</tr>
-				</tbody>
-			</table>
-		{{/with}}
+				{{/each}}
+				<tr>
+					<td>
+						<input id="author" type="text" class="form-control" placeholder="author"/>
+					</td>
+					<td>
+						<form name="message_form">
+							<input id="message" type="text" class="form-control" placeholder="message"/>
+						</form>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<button type="submit" class="btn btn-primary pull-right">
+							<i class="icon-envelope"></i> Send Message
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </template>

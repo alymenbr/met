@@ -1,25 +1,54 @@
  
-
 Router.map( function(){
 	this.route( 'home', {path: '/'} );
-	this.route( 'room', {path: '/rooms/:_id'} );
+	
+	this.route( 'room', {
+		path: '/rooms/:_id',
+		data: function() { return Rooms.findOne(this.params._id); }} );
 });
-
-var rooms = [
-	{name: 'Meteor Talk', members: 3, last_activity: '1 minute ago',
-		messages: [
-			{author: 'Tom', text: 'Hi there Sacha!'},
-			{author: 'Sacha', text: 'Hey Tom, how are you?'},
-			{author: 'Tom', text: 'Good thanks!'}
-		]},
-	{name: 'Dev', members: 2, last_activity: '5 minutes ago'},
-	{name: 'Core', members: 0, last_activity: '3 days ago'}
-];
 
 Template.rooms.helpers({
-	rooms: rooms
+	rooms: function(){
+		return Rooms.find();
+	}
 });
 
-Template.room.helpers({
-	room: rooms[0]
-});
+
+Template.rooms.events = {
+
+	"click button" : function(){
+		var newRoom = document.getElementById("roomName").value;
+		alert(newRoom);
+		
+		//Rooms.insert({name: newRoom, members: 0, last_activity: 'Never'});
+	}
+
+};
+
+Template.room.events = {
+
+	"click button" : function(){
+		var newMessage = document.getElementById("message").value;
+		var newAuthor = document.getElementById("author").value;
+		var currentId = this._id;
+		addMessage(currentId, newAuthor, newMessage);
+	},
+
+	'submit': function () {
+		var newMessage = document.getElementById("message").value;
+		var newAuthor = document.getElementById("author").value;
+		var currentId = this._id;
+		addMessage(currentId, newAuthor, newMessage);
+    }
+};
+
+function addMessage(id, newAuthor, newMessage) {
+		Rooms.update(id, {$push: {messages: {author: newAuthor, text: newMessage}}});
+		clearMessageFields();
+}
+
+function clearMessageFields() {
+	document.getElementById("message").value = "";
+	document.getElementById("author").value = "";
+	document.getElementById("author").focus();
+}
