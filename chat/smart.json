@@ -3,6 +3,8 @@
     "bootstrap-updated": {},
     "font-awesome": {},
     "router": {},
-    "iron-router": {}
+    "iron-router": {},
+    "accounts-ui-bootstrap-3": {},
+    "bootstrap-3": {}
   }
 }

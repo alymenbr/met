@@ -3,22 +3,40 @@
 </head>
 
 <body>
-	<div class="row">
-		{{> rooms}}
+	<div class="span6">
+		{{> home}}
 		{{renderPage}}
 	</div>
 </body>
 
 
+<template name="home">
+	<div class="span6">
+		<h1>Bem vindo ao Chat!</h1>
+			{{> fb_pic}} {{> loginButtons}}
+	</div>	
+</template>
+
+<template name='fb_pic'>
+  {{#if currentUser}}
+    <img src="{{pic}}" class='fbPic'>
+  {{/if}}
+</template>
+
 <template name="rooms">
 	<br>
-	<form name="new_row">
-		<table id="rooms" class="table table-striped span6">
+	<br>	
+
+  {{#if currentUser}}
+
+	<h2>Selecione uma sala ou crie uma nova</h2>
+	<form name="new_row" class="span6">
+		<table id="rooms" class="table table-striped">
 			<thead>
-				<tr>[]
-					<th>Room Name</th>
-					<th>Members online</th>
-					<th>Last activity</th>
+				<tr>
+					<th>Sala</th>
+					<th>Pessoas</th>
+					<th>Ultima Mensagem</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -31,58 +49,55 @@
 				{{/each}}
 				<tr>
 					<td colspan="3">
-						<input id="roomName" type="text" placeholder="Enter new room name"/>
-						<button id="createRoom" type="button" class="btn btn-primary pull-right">
-							<i class="icon-plus"></i>Create Room
-						</button>
-						<button type="submit" class="btn btn-primary pull-right">
-							<i class="icon-plus"></i>Submit
+						<input id="roomName" type="text" placeholder="nome da sala"/>
+						<button id="createRoom" type="button" class="btn btn-primary">
+							<i class="icon-plus"></i>Criar
 						</button>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</form>
+
+  {{/if}}
+
 </template>
 
-<template name="home">
-	<div class="span6">
-		<h1>Welcome to Meteor Chat!</h1>
-		<p>Select a room or create a new one</p>	
-	</div>	
-</template>
+
 
 
 <template name="room">
-	<div class="span6">
-		<h1>Welcome to {{name}}</h1>
-		<form name="message_form">		
-			<table id="chat" class="table table-striped">
-				<tbody>
-					{{#each messages}}
-						<tr>
-							<td>{{author}} :</td>
-							<td>{{text}}</td>
-						</tr>
-					{{/each}}
-					<tr>
-						<td>
-							<input id="author" type="text" class="form-control" placeholder="author"/>
-						</td>
-						<td>
+	<br>
+	<br>
 
-							<input id="message" type="text" class="form-control" placeholder="message"/>
-						</td>
-					</tr>
+  {{#if currentUser}}
+
+	<h1>Sala {{name}}</h1>
+	<a class="btn btn-primary" href="{{ pathFor 'rooms' }}">Sair</a>
+
+	<form name="message_form" class="span6">
+		<table id="chat" class="table table-striped">
+			<tbody>
+				{{#each messages}}
 					<tr>
-						<td colspan="2">
-							<button type="submit" class="btn btn-primary pull-right">
-								<i class="icon-envelope"></i> Send Message
-							</button>
-						</td>
+						<td>{{author}} :</td>
+						<td>{{text}}</td>
 					</tr>
-				</tbody>
-			</table>
-			</form>
-	</div>
+				{{/each}}
+				<tr>
+					<td colspan="2">
+						<div class="col-lg-2">
+							<input id="message" type="text" class="form-control" placeholder="texto da mensagem"/>
+						</div>
+						<button type="submit" class="btn btn-primary">
+							<i class="icon-envelope"></i> Enviar
+						</button>							
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+
+  {{/if}}
+
 </template>

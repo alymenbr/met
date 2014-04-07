@@ -6,6 +6,9 @@
 standard-app-packages
 autopublish
 insecure
-bootstrap-updated
 font-awesome
 iron-router
+bootstrap-3
+accounts-base
+accounts-ui
+accounts-facebook
