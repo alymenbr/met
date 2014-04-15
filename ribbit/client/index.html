@@ -1,0 +1,17 @@
+<head>
+ 
+</head>
+ 
+<body>
+  <header>
+    {{> header}}
+  </header>
+  {{#if currentUser}}
+    {{> buddiescontent}}
+  {{else}}
+    {{> homecontent}}
+  {{/if}}
+  <footer>
+    {{> footer}}
+  </footer>
+</body>
