@@ -1,3 +1,4 @@
+
 Template.buddiescontent.helpers({
     fullName: function() {
         return Meteor.user().profile.name;
@@ -90,6 +91,18 @@ Template.buddiescontent.helpers({
         }
         return retVal;
     }
+});
 
+Template.buddiescontent.events({
+    'click #createTheRibbit': function(event, template) {
+        var ribbitContent = template.find('.ribbitText').value;
 
+        var result = Ribbits.insert({
+            user_id: Meteor.user()._id,
+            ribbit: ribbitContent,
+            created_at: new Date()
+        });
+
+        template.find('.ribbitText').value = "";
+    }
 });
