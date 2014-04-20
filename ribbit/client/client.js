@@ -4,7 +4,7 @@ Template.header.events({
         if (Meteor.userId()) {
             Meteor.logout();
         } else {
-            var userName = template.find('#userName').value;
+            var userName = template.find('#username').value;
             var userPassword = template.find('#password').value;
 
             Meteor.loginWithPassword(userName, userPassword, function(error) {
@@ -32,7 +32,28 @@ Template.homecontent.events({
                 name: name
             }
         }, function(error) {
-            console.log("Cannot create user");
+            console.log("Cannot create user: " + error);
         });
+    }
+});
+
+Template.buddiescontent.events({
+    'click #createTheRibbit': function (event, template) {
+        var ribbitContent = template.find('.ribbitText').value;
+
+        var result = Ribbits.insert({
+            user_id: Meteor.user()._id,
+            ribbit: ribbitContent,
+            created_at: new Date()
+        });
+
+        console.log("*****");
+        console.log("user_id:" + Meteor.user()._id);
+        console.log("ribbit:" + ribbitContent);
+        console.log("created_at:" + new Date());
+        console.log("result:" + result);
+        console.log("***");
+
+        template.find('.ribbitText').value = "";
     }
 });

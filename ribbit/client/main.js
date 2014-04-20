@@ -1,12 +1,10 @@
-Ribbits = new Meteor.Collection('ribbits');
-
 Template.buddiescontent.helpers({
     fullName: function() {
         return Meteor.user().profile.name;
     },
 
     userName: function() {
-        return Meteor.user.username;
+        return Meteor.user().username;
     },
 
     noOfRibbits: function() {
@@ -41,5 +39,57 @@ Template.buddiescontent.helpers({
         }
 
         return retVal;
+    },
+
+    buddyFullName: function(ribbitUserId) {
+        var theUser = Meteor.users.findOne({
+            _id: ribbitUserId
+        });
+        return theUser.profile.name;
+    },
+
+    buddyUserName: function(ribbitUserId) {
+        var theUser = Meteor.users.findOne({
+            _id: ribbitUserId
+        });
+        return theUser.username;
+    },
+
+    ribbits: function() {
+        return Ribbits.find({}, {
+            sort: {
+                created_at: -1
+            }
+        });
+    },
+
+    elapsedTime: function(text) {
+        var currentDate = new Date();
+        var ribbitDate;
+        var minutes_elapsed;
+        var hours_elapsed;
+        var days_elapsed;
+        var retVal;
+        var record = Ribbits.findOne({
+            ribbit: text
+        });
+
+        ribbitDate = new Date(record.created_at);
+        minutes_elapsed = (currentDate - ribbitDate) / 60000;
+
+        if (minutes_elapsed > 60) {
+            hours_elapsed = minutes_elapsed / 60;
+            if (hours_elapsed > 24) {
+                days_elapsed = hours_elapsed / 24;
+                retVal = parseInt(days_elapsed, 10) + "d";
+            } else {
+                retVal = parseInt(hours_elapsed, 10) + "h";
+            }
+        } else {
+            retVal = parseInt(minutes_elapsed, 10) + "m";
+        }
+        return retVal;
     }
+
+
 });
