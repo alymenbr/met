@@ -4,8 +4,8 @@
             <div class="panel right">
                 <h1>Search for Profiles</h1>
                 <p>
-                    <input name="query" type="text">
-                    <input type="submit" value="Search!">
+                    <input id="txQuery" name="query" type="text">
+                    <input id="btSearch" type="submit" value="Search!">
                 </p>
             </div>
 
@@ -15,12 +15,11 @@
                 </h1>
                 {{#each users}}
                 <div class="ribbitWrapper">
-                    <img class="avatar" src="{{gravatarLink _id}}">
+                    <img class="avatar" src="gfx/user2.png">
                     <span class="name">{{profile.name}}</span>@{{username}}
                     <span class="time">{{noOfFollowers _id}}
                         <a href="#" id='{{_id}}' class='follow'>{{followText _id}}</a>
                     </span>
-                    <a href="" class="follow"></a>
                     <p id="last-ribbit">
                     	{{lastRibbit _id}}
                     </p>
