@@ -75,7 +75,6 @@ Template.profile.events({
         } else {
             Session.set('searchedName', undefined);
         }
-        Template.profile();
     },
 
     'click .follow': function(event, template) {
@@ -97,13 +96,7 @@ Template.profile.events({
                 followee_id: Meteor.userId()
             });
         } else {
-            Follows.remove({
-                $and: [{
-                    user_id: theClickedUserId
-                }, {
-                    followee_id: Meteor.user()._id
-                }]
-            });
+            Meteor.call('removeFollow', theClickedUserId, Meteor.userId());
         }
     }
 });

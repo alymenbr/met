@@ -23,6 +23,13 @@ Template.public.helpers({
         return theUser.username;
     },
 
+    publicAvatarLink: function(ribbitUserId) {
+        var theUser = Meteor.users.findOne({
+            _id: ribbitUserId
+        });
+        return theUser.profile.avatarLink;
+    },
+
     elapsedTime: function(text) {
         var currentDate = new Date(),
             ribbitDate,
@@ -48,5 +55,19 @@ Template.public.helpers({
             retVal = parseInt(minutes_elapsed, 10) + "m";
         }
         return retVal;
+    }
+});
+
+Template.public.events({
+    'click #createTheRibbit': function(event, template) {
+        var ribbitContent = template.find('.ribbitText').value;
+
+        var result = Ribbits.insert({
+            user_id: Meteor.user()._id,
+            ribbit: ribbitContent,
+            created_at: new Date()
+        });
+
+        template.find('.ribbitText').value = "";
     }
 });

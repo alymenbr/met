@@ -4,8 +4,8 @@
             <div class="panel right">
                 <h1>Create a Ribbit</h1>
                 <p>
-                    <textarea name="text" class="ribbitText"></textarea>
-                    <input type="submit" value="Ribbit!">
+                    <textarea id="ribbitText" name="text" class="ribbitText"></textarea>
+                    <input id="createTheRibbit" type="submit" value="Ribbit!">
                 </p>
             </div>
             <div id="ribbits" class="panel left">
@@ -14,7 +14,7 @@
                 </h1>
                 {{#each ribbits}}
                 <div class="ribbitWrapper">
-                    <img class="avatar" src="gfx/user2.png">
+                    <img class="avatar" src="{{publicAvatarLink user_id}}">
                     <span class="name">{{publicUserFull user_id}}</span>@{{publicUserName user_id}}
                     <span class="time">{{elapsedTime ribbit}}</span>
                     <p>

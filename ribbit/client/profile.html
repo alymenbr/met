@@ -15,7 +15,7 @@
                 </h1>
                 {{#each users}}
                 <div class="ribbitWrapper">
-                    <img class="avatar" src="gfx/user2.png">
+                    <img class="avatar" src="{{profile.avatarLink}}">
                     <span class="name">{{profile.name}}</span>@{{username}}
                     <span class="time">{{noOfFollowers _id}}
                         <a href="#" id='{{_id}}' class='follow'>{{followText _id}}</a>

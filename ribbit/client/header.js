@@ -22,4 +22,8 @@ Template.header.events({
     'click #buddies': function(event, template) {
         Session.set("currentPage", "buddies");
     },
+
+    'click #profiles': function(event, template) {
+        Session.set("currentPage", "profile");
+    }
 });

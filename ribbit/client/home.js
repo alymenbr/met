@@ -11,7 +11,8 @@ Template.homecontent.events({
             password: password,
             email: userEmail,
             profile: {
-                name: name
+                name: name,
+                avatarLink: 'gfx/user1.png'
             }
         }, function(error) {
             console.log("Cannot create user: " + error);

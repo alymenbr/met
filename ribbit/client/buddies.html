@@ -11,12 +11,12 @@
             <div id="ribbits" class="panel left">
                 <h1>Your Ribbit Profile</h1>
                 <div class="ribbitWrapper">
-                    <img class="avatar" src="gfx/user1.png">
+                    <img id="avatarLink" class="avatar" src="{{avatarLink}}">
                     <span class="name">{{fullName}}</span>@{{userName}}
                     <p>
                         {{noOfRibbits}}
-                        <span class="spacing">45 Followers</span>
-                        <span class="spacing">32 Following</span>
+                        <span class="spacing">{{noOfFollowers}}</span>
+                        <span class="spacing">{{noOfFollowing}}</span>
                         <br>{{lastRibbit}}
                     </p>
                 </div>
@@ -26,7 +26,7 @@
 
                 {{#each ribbits}}
                 <div class="ribbitWrapper">
-                    <img class="avatar" src="gfx/user2.png">
+                    <img class="avatar" src="{{buddyAvatarLink user_id}}">
                     <span class="name">{{buddyFullName user_id}}</span>@{{buddyUserName user_id}}
                     <span class="time">{{elapsedTime ribbit}}</span>
                     <p>

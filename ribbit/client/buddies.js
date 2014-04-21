@@ -1,4 +1,3 @@
-
 Template.buddiescontent.helpers({
     fullName: function() {
         return Meteor.user().profile.name;
@@ -6,6 +5,10 @@ Template.buddiescontent.helpers({
 
     userName: function() {
         return Meteor.user().username;
+    },
+
+    avatarLink: function() {
+        return Meteor.user().profile.avatarLink;
     },
 
     noOfRibbits: function() {
@@ -21,6 +24,21 @@ Template.buddiescontent.helpers({
         }
 
         return retVal;
+    },
+
+
+    noOfFollowers: function() {
+        var followers = Follows.find({
+            user_id: Meteor.userId()
+        });
+        return followers.count() + " followers";
+    },
+
+    noOfFollowing: function() {
+        var following = Follows.find({
+            followee_id: Meteor.userId()
+        });
+        return following.count() + " following";
     },
 
     lastRibbit: function() {
@@ -54,6 +72,13 @@ Template.buddiescontent.helpers({
             _id: ribbitUserId
         });
         return theUser.username;
+    },
+
+    buddyAvatarLink: function(ribbitUserId) {
+        var theUser = Meteor.users.findOne({
+            _id: ribbitUserId
+        });
+        return theUser.profile.avatarLink;
     },
 
     ribbits: function() {
@@ -104,5 +129,29 @@ Template.buddiescontent.events({
         });
 
         template.find('.ribbitText').value = "";
+    },
+
+    'click #avatarLink': function(event, template) {
+        var currentLink = Meteor.user().profile.avatarLink;
+        var newLink;
+
+        switch (currentLink) {
+
+            case "gfx/user1.png":
+                newLink = "gfx/user2.png";
+                break;
+            case "gfx/user2.png":
+                newLink = "gfx/user3.png";
+                break;
+            case "gfx/user3.png":
+                newLink = "gfx/user1.png";
+                break;
+        }
+
+        Meteor.users.update(Meteor.userId(), {
+            $set: {
+                profile: {avatarLink: newLink, name: Meteor.user().profile. name}
+            }
+        });
     }
 });
