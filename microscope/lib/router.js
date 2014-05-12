@@ -43,10 +43,10 @@ var requireLogin = function() {
 
 Router.onBeforeAction('loading');
 
-Router.onBeforeAction(function() {
-    clearErrors();
-});
-
 Router.onBeforeAction(requireLogin, {
     only: 'postSubmit'
+});
+
+Router.onBeforeAction(function() {
+    clearErrors();
 });
