@@ -14,7 +14,7 @@ Template.notification.helpers({
 });
 
 Tempate.notification.events({
-	'click a': function(){
+	'click #postLink': function(){
 		Notifications.update(this._id, {$set: {read: true}});
 	}
 });

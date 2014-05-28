@@ -10,7 +10,7 @@
 	<ul class="notification dropdown-menu">
 		{{#if notificationCount}}
 			{{#each notifications}}
-				{{> notifications}}
+				{{> notification}}
 			{{/each}}
 		{{/if}}
 		<li><span></span></li>
@@ -19,7 +19,7 @@
 
 <template name="notification">
 	<li>
-		<a href="{{notificationPostPath}}">
+		<a id="postLink"  href="{{notificationPostPath}}">
 			<strong>{{commenterName}}</strong> commented on your post!
 		</a>
 	</li>
