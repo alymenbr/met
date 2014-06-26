@@ -2,15 +2,11 @@ Router.configure({
     layoutTemplate: 'layout',
     loadingTemplate: 'loading',
     waitOn: function() {
-        return [Meteor.subscribe('posts'),
-                Meteor.subscribe('notifications')];
+        return [Meteor.subscribe('notifications')];
     }
 });
 
 Router.map(function() {
-    this.route('postsList', {
-        path: '/'
-    });
 
     this.route('postPage', {
         path: '/posts/:_id',
@@ -31,6 +27,15 @@ Router.map(function() {
 
     this.route('postSubmit', {
         path: '/submit'
+    });
+
+    this.route('postsList', {
+        path: '/:postsLimit?',
+        waitOn: function(){
+            var postLimit = parseInt(this.params.postsLimit, 10) || 5;
+            return Meteor.subscribe('posts', {sort: {submittd: -1}, limit: postLimit });
+        }
+
     });
 });
 
