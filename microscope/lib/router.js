@@ -6,6 +6,23 @@ Router.configure({
     }
 });
 
+ PostsListController = RouteController.extend({
+    template: 'postsList',
+    increment: 5,
+    limit: function(){
+        return parseInt(this.params.postsLimit, 10) || this.increment;
+    },
+    findOptions: function(){
+        return {sort: {submitted: -1}, limit: this.limit() };
+    },
+    waitOn: function(){
+        return Meteor.subscribe('posts', this.findOptions());
+    },
+    data: function(){
+        return {posts: Posts.find({}, this.findOptions())};
+    }
+});
+
 Router.map(function() {
 
     this.route('postPage', {
@@ -31,11 +48,7 @@ Router.map(function() {
 
     this.route('postsList', {
         path: '/:postsLimit?',
-        waitOn: function(){
-            var postLimit = parseInt(this.params.postsLimit, 10) || 5;
-            return Meteor.subscribe('posts', {sort: {submittd: -1}, limit: postLimit });
-        }
-
+        controller: PostsListController
     });
 });
 
