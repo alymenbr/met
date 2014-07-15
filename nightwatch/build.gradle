@@ -1,0 +1,11 @@
+task start << {
+	Runtime.getRuntime().exec("java -jar selenium-server-standalone-2.39.0.jar")
+}
+
+task test << {
+	Runtime.getRuntime().exec("nightwatch")
+}
+
+task stop << {
+	Runtime.getRuntime().exec("curl --request GET http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer")
+}
