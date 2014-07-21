@@ -1,15 +1,20 @@
 module.exports = function() {
-  var fs = require('fs');
+    var fs = require('fs'),
+        wrench = require('wrench'),
+        util = require('util');
 
-  var data = fs.readFileSync('./atual/atual.json'),
-      myObj;
+    var fileNameList = wrench.readdirSyncRecursive("atual");
 
-  try {
-      myObj = JSON.parse(data);
-  } catch (err) {
-      console.log('There has been an error parsing your JSON.');
-      console.log(err);
-  }
+    var data = fs.readFileSync('./atual/' + fileNameList[0], 'utf8'),
+        myObj;
 
-  return myObj;
+    try {
+        console.log(data);
+        myObj = JSON.parse(data);
+    } catch (err) {
+        console.log('There has been an error parsing your JSON.');
+        console.log(err);
+    }
+
+    return myObj;
 };
