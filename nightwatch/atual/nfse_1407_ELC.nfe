@@ -1,0 +1,23 @@
+{
+  "servico": "SUPORTE AO SISTEMA ELC ANDROID \nReferente a ",
+  "mes": "Julho",
+  "ano": "2014",
+  "textoPedido": "PEDIDO: 4500821890",
+  "vencimento": "31/07/2014",
+  "valor": "3000,00",
+
+  "usuario": "18801297000150",
+  "senha": "18801297",
+  "cnpj_cliente": "34151100001706",
+  "razao_social": "SOTREQ S/A",
+  "cep": "32371630",
+  "logradouro": "Via Gastão Camargos",
+  "logradouro_numero": "850",
+  "bairro": "PEROBAS",
+  "cidade": "Contagem",
+  "estado": "MG",  
+  "pagamento": "\nPAGAMENTO: Crédito em conta até ",
+  "conta": "\nBanco do Brasil (001) \nAgência: 3491-6 \nConta: 37054-1",
+  "codigo_cnae": "10100188",
+  "subcodigo_cnae": "172"
+}
