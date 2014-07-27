@@ -1,4 +1,5 @@
 var timeout = 200000;
+var waitFor = 1500;
 
 var DoWith = function(newBrowser) {
     this.browser = newBrowser;
@@ -16,8 +17,9 @@ DoWith.prototype.esperaPor = function(nome) {
     console.log('esperaPor:' + nome);
     selector = '[name=\'' + nome + '\']';
 
-    this.browser.pause(3000);
-    this.browser.waitForElementVisible(selector, timeout);
+    this.browser
+        .pause(waitFor)
+        .waitForElementVisible(selector, timeout);
     return this;
 };
 
@@ -25,8 +27,27 @@ DoWith.prototype.clicaEm = function(nome) {
     console.log('clicaEm:' + nome);
     selector = '[name=\'' + nome + '\']';
 
-    this.browser.waitForElementVisible(selector, timeout);
-    this.browser.click(selector);
+    this.browser
+        .waitForElementVisible(selector, timeout)
+        .click(selector);
+    return this;
+};
+
+DoWith.prototype.executaScript = function(script) {
+    console.log('executaScript:' + script);
+
+    this.browser
+        .execute(script, []);
+    return this;
+};
+
+DoWith.prototype.xPathClicaEm = function(nome) {
+    console.log('xPathClicaEm:' + nome);
+    selector = '[name=\'' + nome + '\']';
+
+    this.browser.useXpath()
+        .waitForElementVisible(selector, timeout)
+        .click(selector);
     return this;
 };
 
@@ -34,8 +55,9 @@ DoWith.prototype.preencheCampo = function(nome, valor) {
     console.log('preencheCampo:' + nome + ' ' + valor);
     selector = '[name=\'' + nome + '\']';
 
-    this.browser.waitForElementVisible(selector, timeout);
-    this.browser.setValue(selector, valor);
+    this.browser
+        .waitForElementVisible(selector, timeout)
+        .setValue(selector, valor);
     return this;
 };
 
@@ -82,7 +104,8 @@ DoWith.prototype.emiteNota = function(nota) {
     this
         .preencheNovaNota()
         .preencheTomadorDeServico(nota)
-        .preencheIdentificacaoDoServico(nota);
+        .preencheIdentificacaoDoServico(nota)
+        .preencheValoresFinais(nota);
 
     return this;
 };
@@ -118,23 +141,29 @@ DoWith.prototype.preencheTomadorDeServico = function(nota_fiscal) {
 
 DoWith.prototype.preencheIdentificacaoDoServico = function(nota_fiscal) {
 
-    /*
-preencheIdentificacaoDoServico = (nota_fiscal, callback) ->
-  clicaEmLinkLike webdriver.By.xpath("//div[@id='topo_aba2']/descendant::a")
-  esperaCarregar 'Serviço', webdriver.By.name('form:descriminacaoServico'), ->
-    preencheCampo 'form:descriminacaoServico', nota_fiscal.servico
-    preencheCampo 'form:descriminacaoServico', nota_fiscal.mes
-    preencheCampo 'form:descriminacaoServico', "/"
-    preencheCampo 'form:descriminacaoServico', nota_fiscal.ano
-    preencheCampo 'form:descriminacaoServico', "\n"
-    preencheCampo 'form:descriminacaoServico', nota_fiscal.textoPedido
-    preencheCampo 'form:descriminacaoServico', nota_fiscal.pagamento
-    preencheCampo 'form:descriminacaoServico', nota_fiscal.vencimento
-    preencheCampo 'form:descriminacaoServico', nota_fiscal.conta    
-    selecionaOpcaoDeComboBox 'form:codigoCnae', nota_fiscal.codigo_cnae
-    #selecionaOpcaoDeComboBox 'form:itemListaServico', nota_fiscal.subcodigo_cnae
-    callback?()
-*/
+    this
+        .executaScript("controlaAbas('aba2');")
+        .esperaPor('form:descriminacaoServico')
+        .preencheCampo('form:descriminacaoServico', nota_fiscal.servico)
+        .preencheCampo('form:descriminacaoServico', nota_fiscal.mes)
+        .preencheCampo('form:descriminacaoServico', "/")
+        .preencheCampo('form:descriminacaoServico', nota_fiscal.ano)
+        .preencheCampo('form:descriminacaoServico', "\n")
+        .preencheCampo('form:descriminacaoServico', nota_fiscal.textoPedido)
+        .preencheCampo('form:descriminacaoServico', nota_fiscal.pagamento)
+        .preencheCampo('form:descriminacaoServico', nota_fiscal.vencimento)
+        .preencheCampo('form:descriminacaoServico', nota_fiscal.conta)
+        .selecionaOpcaoDeComboBox('form:codigoCnae', nota_fiscal.codigo_cnae);
+
+    return this;
+};
+
+DoWith.prototype.preencheValoresFinais = function(nota_fiscal) {
+
+    this
+        .executaScript("controlaAbas('aba3');")
+        .preencheCampo('form:valorServicos', nota_fiscal.valor)
+        .clicaEm('form:bt_emitir_NFS-e');
 
     return this;
 };
@@ -153,9 +182,5 @@ module.exports = {
         new DoWith(browser)
             .fazLogin()
             .emiteNota(nota);
-
-        /*
-            .end();
-        */
     }
 };
