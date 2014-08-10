@@ -1,11 +1,11 @@
 TodosIndexController = RouteController.extend({
-  waitOn: function () {
-  },
+    waitOn: function() {
+        Meteor.subscribe('todos_index');
+    },
 
-  data: function () {
-  },
+    data: function() {},
 
-  action: function () {
-    this.render();
-  }
+    action: function() {
+        this.render();
+    }
 });
