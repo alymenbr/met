@@ -39,8 +39,9 @@ Meteor.methods({
             }
         };
 
-
-
+        var wrapped = Async.wrap(mp, 'createPreapprovalPayment');
+        var result = wrapped(preapprovalPayment);
+/*
         mp.createPreapprovalPayment(preapprovalPayment, function(err, data) {
             console.log('');
             console.log('');
@@ -49,7 +50,7 @@ Meteor.methods({
             console.log('');
             console.log('');
         });
-
+*/
 
         /*
         console.log('error: ' + response.error);
@@ -57,6 +58,6 @@ Meteor.methods({
         console.log('sandbox_init_point: ' + response.result.response.sandbox_init_point);
 
   */
-        return response.result;
+        return 'response.result';
     }
 });
