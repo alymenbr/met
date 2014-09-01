@@ -40,17 +40,23 @@ Meteor.methods({
         };
 
 
-    var response();
-    mp.createPreapprovalPayment(preapprovalPayment, function(err, data) {
 
-    });
+        mp.createPreapprovalPayment(preapprovalPayment, function(err, data) {
+            console.log('');
+            console.log('');
+            console.log('-----------------------------------------');
+            console.log(JSON.strignnify(data));
+            console.log('');
+            console.log('');
+        });
 
 
-/*
+        /*
         console.log('error: ' + response.error);
         console.log('result: ' + response.result);
         console.log('sandbox_init_point: ' + response.result.response.sandbox_init_point);
 
-  */      return response.result;
+  */
+        return response.result;
     }
 });
