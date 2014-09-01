@@ -1,0 +1,56 @@
+/*****************************************************************************/
+/* Subscribe Methods */
+/*****************************************************************************/
+
+Meteor.methods({
+    /*
+     * Example:
+     *  '/app/subscribe/update/email': function (email) {
+     *    Users.update({_id: this.userId}, {$set: {'profile.email': email}});
+     *  }
+     *
+     */
+
+    'getPaymentUrl': function(email) {
+
+
+        var client_id = "1463580163804538";
+        var client_secret = "zCOFVP8OIiPqtj9M9ViluwgEzmNQRCWB";
+
+        var MP = Meteor.npmRequire('mercadopago');
+        var mp = new MP(client_id, client_secret);
+        mp.sandboxMode(true);
+
+        var startDate = new Date();
+        startDate.setMonth(startDate.getMonth() + 1);
+
+        var preapprovalPayment = {
+            "payer_email": email,
+            "back_url": "http://mpexample.herokuapp.com/",
+            "reason": "METEOR subscription to premium package",
+            "external_reference": email,
+            "auto_recurring": {
+                "frequency": 1,
+                "frequency_type": "months",
+                "transaction_amount": 12,
+                "currency_id": "BRL",
+                "start_date": startDate,
+                "end_date": null
+            }
+        };
+
+
+    var response();
+    mp.createPreapprovalPayment(preapprovalPayment, function(err, data) {
+
+    });
+
+
+/*
+        console.log('error: ' + response.error);
+        console.log('result: ' + response.result);
+        console.log('sandbox_init_point: ' + response.result.response.sandbox_init_point);
+
+  */      return response.result;
+    }
+});
