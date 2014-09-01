@@ -1,6 +1,10 @@
 Package.describe({
   name: 'mixpanel',
+<<<<<<< HEAD
   summary: 'local mixpanel package'
+=======
+  summary: 'Teste do mixpanel'
+>>>>>>> 7a231712ac68180e4212a2426c600dbe10f81836
 });
 
 Package.on_use(function (api) {

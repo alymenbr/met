@@ -1,5 +1,11 @@
 {
+<<<<<<< HEAD
     "public": {
         "mixpanel": "7bf3f21d76d93e585c2c33f02ca151a4"
     }
+=======
+	"public": {
+		"mixpanel": "7bf3f21d76d93e585c2c33f02ca151a4"
+	}
+>>>>>>> 7a231712ac68180e4212a2426c600dbe10f81836
 }
