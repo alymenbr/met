@@ -40,24 +40,22 @@ Meteor.methods({
         };
 
         var wrapped = Async.wrap(mp, 'createPreapprovalPayment');
-        var result = wrapped(preapprovalPayment);
+        var onDone = wrapped(preapprovalPayment);
 /*
         mp.createPreapprovalPayment(preapprovalPayment, function(err, data) {
             console.log('');
             console.log('');
             console.log('-----------------------------------------');
-            console.log(JSON.strignnify(data));
+            console.log(JSON.stringify(data));
+            console.log('-----------------------------------------');            
             console.log('');
             console.log('');
         });
 */
 
-        /*
-        console.log('error: ' + response.error);
-        console.log('result: ' + response.result);
-        console.log('sandbox_init_point: ' + response.result.response.sandbox_init_point);
+        console.log('json: ' + JSON.stringify(onDone) );
+        console.log('sandbox_init_point: ' + onDone.response.sandbox_init_point);
 
-  */
         return 'response.result';
     }
 });
