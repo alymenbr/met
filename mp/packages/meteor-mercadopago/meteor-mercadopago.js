@@ -99,3 +99,14 @@ function initializeMercadoPago() {
         throw new Error('mercadopago.client_id and mercadopago.client_secret not found on settings file. Be sure to start Meteor with --settings [filename.json]');
 }
 initializeMercadoPago();
+
+
+
+
+TODO:
+    - Criar API para receber respostas
+    - Adicionar resultados em uma coleçao
+    - Exibir a coleçao
+    - Publicar no meteor.com 
+    - Direcionar MP para o meteor.com
+    - Criar testes e readme para o pacote
