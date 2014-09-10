@@ -32,6 +32,6 @@ Meteor.methods({
         };
 
 
-        return MercadoPago.getPaymentUrl(email, paymentInfo, true);
+        return MercadoPago.getPaymentUrl(paymentInfo, true);
     }
 });
