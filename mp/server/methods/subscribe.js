@@ -14,17 +14,9 @@ Meteor.methods({
     'getPaymentUrl': function(email) {
 
 
-        var client_id = "1463580163804538";
-        var client_secret = "zCOFVP8OIiPqtj9M9ViluwgEzmNQRCWB";
-
-        var MP = Meteor.npmRequire('mercadopago');
-        var mp = new MP(client_id, client_secret);
-        mp.sandboxMode(true);
-
         var startDate = new Date();
         startDate.setMonth(startDate.getMonth() + 1);
-
-        var preapprovalPayment = {
+        var paymentInfo = {
             "payer_email": email,
             "back_url": "http://mpexample.herokuapp.com/",
             "reason": "METEOR subscription to premium package",
@@ -39,23 +31,34 @@ Meteor.methods({
             }
         };
 
-        var wrapped = Async.wrap(mp, 'createPreapprovalPayment');
-        var onDone = wrapped(preapprovalPayment);
-/*
-        mp.createPreapprovalPayment(preapprovalPayment, function(err, data) {
-            console.log('');
-            console.log('');
-            console.log('-----------------------------------------');
-            console.log(JSON.stringify(data));
-            console.log('-----------------------------------------');            
-            console.log('');
-            console.log('');
-        });
-*/
 
-        console.log('json: ' + JSON.stringify(onDone) );
-        console.log('sandbox_init_point: ' + onDone.response.sandbox_init_point);
-
-        return 'response.result';
+        return getPaymentUrl(email, paymentInfo, true);
     }
 });
+
+
+
+var localPreferences = {
+    client_id: "1463580163804538",
+    client_secret: "zCOFVP8OIiPqtj9M9ViluwgEzmNQRCWB"
+};
+
+function getPaymentUrl(email, paymentInfo, isSandbox) {
+
+
+    var MP = Meteor.npmRequire('mercadopago');
+    var mp = new MP(localPreferences.client_id, localPreferences.client_secret);
+    mp.sandboxMode(isSandbox);
+
+    var syncPreapprovalPayment = Async.wrap(mp, 'createPreapprovalPayment');
+    var onDone = syncPreapprovalPayment(paymentInfo);
+
+    var paymentUrl;
+
+    if (onDone.response)
+        paymentUrl = isSandbox ? onDone.response.sandbox_init_point : onDone.response.init_point;
+    else
+        paymentUrl = onDone.err;
+
+    return paymentUrl;
+}
