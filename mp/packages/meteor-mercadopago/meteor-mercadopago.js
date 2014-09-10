@@ -8,37 +8,41 @@ var constants = {
 MercadoPago = {
 
     'getPaymentUrl': function(paymentInfo, isSandbox) {
-
-        var MP = Npm.require('mercadopago');
-        var mp = new MP(mpSettings.client_id, mpSettings.client_secret);
-        mp.sandboxMode(isSandbox);
-
-        var syncCreatePayment = Async.wrap(mp, 'createPreapprovalPayment');
-
-        var response = {};
-        try {
-            var onDone = syncCreatePayment(paymentInfo);
-            response.url = isSandbox ? onDone.response.sandbox_init_point : onDone.response.init_point;
-
-        } catch (e) {
-            console.log('Error on MercadoPago.getPaymentUrl: ' + e);
-            response.error = e;
-        }
-
-        return response;
+        return getPaymentUrl(paymentInfo, isSandbox);
     },
 
     'getPaymentInfo': function(topic, id) {
 
-        if(topic == constants.TOPIC_PRE_APPROVAL){
+        if (topic == constants.TOPIC_PRE_APPROVAL) {
             return getPreapprovalStatus(topic, id);
-        }
-        else if(topic == constants.TOPIC_PRE_APPROVAL){
+        } else if (topic == constants.TOPIC_PRE_APPROVAL) {
             return getAuthorizedStatus(topic, id);
         }
     }
 
 };
+
+
+function getPaymentUrl(paymentInfo, isSandbox) {
+
+    var MP = Npm.require('mercadopago');
+    var mp = new MP(mpSettings.client_id, mpSettings.client_secret);
+    mp.sandboxMode(isSandbox);
+
+    var syncCreatePayment = Async.wrap(mp, 'createPreapprovalPayment');
+
+    var response = {};
+    try {
+        var onDone = syncCreatePayment(paymentInfo);
+        response.url = isSandbox ? onDone.response.sandbox_init_point : onDone.response.init_point;
+
+    } catch (e) {
+        console.log('Error on MercadoPago.getPaymentUrl: ' + e);
+        response.error = e;
+    }
+
+    return response;
+}
 
 function getPreapprovalStatus(topic, id) {
 
@@ -104,9 +108,9 @@ initializeMercadoPago();
 
 
 TODO:
-    - Criar API para receber respostas
-    - Adicionar resultados em uma coleçao
-    - Exibir a coleçao
+    -Criar API para receber respostas
+    - Adicionar resultados em uma coleçao 
+    - Exibir a coleçao 
     - Publicar no meteor.com 
-    - Direcionar MP para o meteor.com
+    - Direcionar MP para o meteor.com 
     - Criar testes e readme para o pacote
