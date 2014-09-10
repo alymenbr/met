@@ -6,7 +6,6 @@
 standard-app-packages
 insecure
 iron:router
-meteorhacks:npm
 
 
-npm-container
+meteor-mercadopago
