@@ -33,7 +33,7 @@ Template.SubscribeIndex.helpers({
 /*****************************************************************************/
 Template.SubscribeIndex.created = function () {
 
-  Meteor.call('getPaymentUrl', 'usuario@teste.com', function(err, result){
+  Meteor.call('getPaymentUrl', function(err, result){
       Session.set("paymentUrl", result);
   });
 };

@@ -1,6 +1,7 @@
 {
     "mercadopago": {
-        "client_id": "1463580163804538",
-        "client_secret": "zCOFVP8OIiPqtj9M9ViluwgEzmNQRCWB"
+        "client_id": "client_id",
+        "client_secret": "client_secret",
+        "isSandbox": true
     }
 }
