@@ -6,4 +6,28 @@
 
     <p>URL: {{paymentUrl.url}}</p>
     <p>ERROR: {{ paymentUrl.error }}</p>
+
+
+
+    <table id="mpStatus">
+        <tbody>
+            <tr>
+                <th>_id</th>                
+                <th>subscriptionId</th>
+                <th>paymentTopic</th>
+                <th>paymentStatus</th>
+                <th>raw</th>
+            </tr>
+
+            {{#each mercadoPagoStatus}}
+            <tr>
+            	<td>{{_id}}</td>
+                <td>{{subscriptionId}}</td>
+                <td>{{paymentTopic}}</td>
+                <td>{{paymentStatus}}</td>
+                <td>{{raw}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </template>

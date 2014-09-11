@@ -21,6 +21,10 @@ Template.SubscribeIndex.helpers({
 
    'paymentUrl': function(){
       return Session.get("paymentUrl") || "";
+   },
+
+   'mercadoPagoStatus': function(){
+      return MercadoPagoStatus.find();
    }
 });
 
