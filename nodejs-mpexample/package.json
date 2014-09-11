@@ -1,0 +1,20 @@
+{
+    "name": "mercadopago-examples",
+    "version": "0.0.1",
+    "repository": "https://github.com/alymenbr/mpexample",
+    "author": "hcasatti <horacio.casatti@mercadolibre.com>",
+    "license": "BSD",
+    "dependencies": {
+        "mercadopago": "*",
+        "jade": ">=0.27.0",
+        "express": ">=3.0.0",
+        "MD5": ">= 1.0.0"
+    },
+    "main": "index.js",
+    "engines": {
+        "node": "0.8.x"
+    },
+    "scripts": {
+        "start": "node index.js"
+    }
+}
