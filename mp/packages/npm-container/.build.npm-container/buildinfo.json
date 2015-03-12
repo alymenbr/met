@@ -1,0 +1,39 @@
+{
+  "builtBy": "meteor/13",
+  "buildDependencies": {
+    "os.json": {
+      "files": {
+        "/home/alysson/Projetos/met/mp/packages/npm-container/package.js": "89789984fd84efbdc376273749e33c0df7b790fb",
+        "/home/alysson/Projetos/met/mp/packages/npm-container/.npm/package/npm-shrinkwrap.json": "89fc0624a966ee6a370c2d113dc8912c513d339f",
+        "/home/alysson/Projetos/met/mp/packages/npm-container/index.js": "034ee49f7f69f833b56a845ecb34ca9cda47623d",
+        "/home/alysson/Projetos/met/mp/packages.json": "12669591eb623d33201f781c77532e0ccc786a8c"
+      },
+      "directories": []
+    },
+    "web.browser.json": {
+      "files": {
+        "/home/alysson/Projetos/met/mp/packages/npm-container/package.js": "89789984fd84efbdc376273749e33c0df7b790fb",
+        "/home/alysson/Projetos/met/mp/packages/npm-container/.npm/package/npm-shrinkwrap.json": "89fc0624a966ee6a370c2d113dc8912c513d339f"
+      },
+      "directories": []
+    },
+    "web.cordova.json": {
+      "files": {
+        "/home/alysson/Projetos/met/mp/packages/npm-container/package.js": "89789984fd84efbdc376273749e33c0df7b790fb",
+        "/home/alysson/Projetos/met/mp/packages/npm-container/.npm/package/npm-shrinkwrap.json": "89fc0624a966ee6a370c2d113dc8912c513d339f"
+      },
+      "directories": []
+    }
+  },
+  "pluginDependencies": {
+    "files": {
+      "/home/alysson/Projetos/met/mp/packages/npm-container/package.js": "89789984fd84efbdc376273749e33c0df7b790fb"
+    },
+    "directories": []
+  },
+  "source": "/home/alysson/Projetos/met/mp/packages/npm-container",
+  "buildTimeDirectDependencies": {
+    "meteor": "1.0.2"
+  },
+  "buildTimePluginDependencies": {}
+}

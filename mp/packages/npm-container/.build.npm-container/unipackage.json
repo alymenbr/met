@@ -1,0 +1,23 @@
+{
+  "format": "unipackage-pre2",
+  "name": "npm-container",
+  "summary": "Contains all your npm dependencies",
+  "version": "1.0.0+35cd6ce716792bdb13c9f812343b589cd368744f",
+  "earliestCompatibleVersion": "1.0.0",
+  "isTest": false,
+  "unibuilds": [
+    {
+      "arch": "os",
+      "path": "os.json"
+    },
+    {
+      "arch": "web.browser",
+      "path": "web.browser.json"
+    },
+    {
+      "arch": "web.cordova",
+      "path": "web.cordova.json"
+    }
+  ],
+  "plugins": []
+}
