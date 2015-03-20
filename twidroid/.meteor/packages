@@ -4,5 +4,7 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
 insecure
+semantic:ui-css
+streams
+momentjs
