@@ -1,11 +1,11 @@
 {
-	consumer: {
-		key: 'w0TtlhxFEhYisSu0yWjlzFVk9',
-		secret: 'UHoBcWQxZcX3JewnCklHpiYn4XjxUeus9qImiEAU0mIbx3E0rE'
+	'consumer': {
+		'key': 'w0TtlhxFEhYisSu0yWjlzFVk9',
+		'secret': 'UHoBcWQxZcX3JewnCklHpiYn4XjxUeus9qImiEAU0mIbx3E0rE'
 	},
-	access_token: {
-		key: '1321178677-qvcDQOooSImkJmZz4F9KmIFhltj1w11kwzGiE3w',
-		secret: '8kDCYntfNaD5FomvcBkvd8LaJOEqsl2yZghLNWUNeglpy'
+	'access_token': {
+		'key': '1321178677-qvcDQOooSImkJmZz4F9KmIFhltj1w11kwzGiE3w',
+		'secret': '8kDCYntfNaD5FomvcBkvd8LaJOEqsl2yZghLNWUNeglpy'
 	},
-	hashtag: '#javascript'
+	'hashtag': '#javascript'
 }
