@@ -7,8 +7,8 @@ ContactsSchema = new SimpleSchema ({
 	email: {
 		type: String
 	},
-	createdAt: {
-		type: Date,
+	photo: {
+		type: String,	// Base64 URI
 		optional: true
 	},
 	lastUpdated: {
@@ -33,6 +33,10 @@ Meteor.methods({
 		check(obj.updateDoc.$set, ContactsSchema);
 		return Contacts.update({_id: obj._id}, obj.updateDoc);
 	},
+
+	editPhoto: function(id, data) {
+		return Contacts.update({_id: id}, { $set: {photo: data} });
+	},	
 	
 	removeContact: function(id) {
 		check(id, String);
@@ -40,7 +44,7 @@ Meteor.methods({
 	}
 });
 
-if ( Meteor.isClient ) {
+if ( Meteor.isCordova ) {
 	Ground.methodResume([
   		'addContact',
   		'editContact',

@@ -6,10 +6,12 @@
 
 meteor-platform
 insecure
-aldeed:autoform
 aldeed:simple-schema
 meteoric:ionic
 meteoric:ionic-sass
 meteoric:ionicons-sass
 ground:db
 iron:router
+mdg:camera
+aldeed:autoform@4.2.2
+meteoric:autoform-ionic

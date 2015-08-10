@@ -1,5 +1,5 @@
 <head>
-	<title>Offline App</title>
+	<title>Teste Offline+Camera</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 </head>
 
@@ -27,9 +27,10 @@
 			{{#if Template.subscriptionsReady}}
 				{{#ionList}}
 					{{#each contacts}}
-						{{#ionItem path="edit" buttonRight=true}}
+						{{#ionItem path="edit" buttonRight=true avatar=true}}
+							<img id="photo" src="{{photo}}" style="max-height: 50px; max-width: 50px;">
 							<h2>{{name}}</h2>
-							<p>{{email}}</p>
+							<em>{{email}}</em>
 							<button class="button button-assertive">
 								{{> ionIcon icon="close-circled"}}
 							</button>
@@ -46,12 +47,20 @@
 <template name="new">
 	<div class="bar bar-header bar-positive">
 		{{>ionNavBackButton path="contacts" text="Back"}}
-		<div class="title">Edit Contact</div>
+		<div class="title">Novo Contato</div>
 	</div>
 
 	{{#ionView}}
-		{{#ionContent class="padding"}}
-			{{> quickForm schema="ContactsSchema" collection="Contacts" id="insertContactForm" type="normal" omitFields="createdAt, lastUpdated"}}
+		{{#ionContent}}
+
+			{{#autoForm schema="ContactsSchema" collection="Contacts" id="insertContactForm" type="normal"}}
+			<fieldset>
+				{{> afQuickField name='name'}}
+				{{> afQuickField name='email'}}
+			</fieldset>
+    		<button type="submit" class="button button-balanced button-block active">Cadastrar!</button>			
+			{{/autoForm}}
+
 		{{/ionContent}}
 	{{/ionView}}
 </template>
@@ -59,14 +68,23 @@
 <template name="edit">
 	<div class="bar bar-header bar-positive">
 		{{>ionNavBackButton path="contacts" text="Back"}}
-		<div class="title">Edit Contact</div>
+		<div class="title">Alterar Contato</div>
 	</div>
 
 	{{#ionView}}
-		{{#ionContent class="padding"}}
+		{{#ionContent}}
 			{{#if Template.subscriptionsReady}}
+				
+				{{#autoForm schema="ContactsSchema" collection="Contacts" id="editContactForm" type="normal" doc=selectedDoc}}
+				<fieldset>
+					{{> afQuickField name='name'}}
+					{{> afQuickField name='email'}}
+					<img id="photo" src="{{photo}}" style="max-height: 300px; max-width: 300px;">
+				</fieldset>
+	    		<button type="submit" class="button button-balanced button-block active">Alterar!</button>			
+				{{/autoForm}}
 
-				{{> quickForm schema="ContactsSchema" collection="Contacts" id="editContactForm" type="normal" doc=selectedDoc omitFields="createdAt, lastUpdated"}}
+
 			{{else}}
 				{{> spinner}}
 			{{/if}}

@@ -24,6 +24,27 @@ Template.contacts.events({
 	}
 });
 
+
+Template.edit.helpers({
+	'photo': function() {
+		if(this._af.doc.photo && this._af.doc && this._af.doc.photo)
+			return this._af.doc.photo;
+		else
+			return "/avatar.gif";
+	}
+});
+
+Template.edit.events({
+	'click #photo': function(e) {
+		e.preventDefault();
+
+		MeteorCamera.getPicture({}, function(error, data){
+			Meteor.call('editPhoto', Router.current().params._id, data);
+		});
+	}
+});
+
+
 Template.edit.onCreated(function() {
 	var self = this;
 	self.autorun(function() {
@@ -54,7 +75,10 @@ AutoForm.hooks({
 AutoForm.hooks({
 	editContactForm: {
 		onSubmit: function(insertDoc, updateDoc, currentDoc) {
+
+			updateDoc['$set'].photo = currentDoc.photo
 			var obj = {_id: Router.current().params._id, updateDoc: updateDoc};
+
 			Meteor.call('editContact', obj, function(error, result) {
 				if (error) alert(error.reason);
 			});
